@@ -36,7 +36,7 @@ class HackerBot(irc.IRCClient):
                 self.msg(channel, "[!] Failed to check if website was up..")
                 return
 
-        for url in re.findall(r"https?://.*/", msg):
+        for url in re.findall(r"https?://.*/.*\b", msg):
             try:
                 websiteTitle = commands.websiteTitle(url)
                 if len(url) > 55:
